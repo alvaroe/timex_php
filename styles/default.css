@@ -243,3 +243,13 @@ a:hover {
 	text-align: center;
 	font-size: 77%;
 }
+.error {
+	color:#FF0033;
+	font-size:14px;
+	}
+.style25{
+	font-weight: bolder;	
+}	
+.style31{
+	color: #9A8825
+}
