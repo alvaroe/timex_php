@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Online Timesheet System</title>
+<meta name="keywords" content="Timeheets, Time, Clock, Work, Hours" />
+<meta name="description"
+	content="This is TIMEX, the Online Timesheet System for ACME Company Inc." />
+<link href="styles/default.css" rel="stylesheet" type="text/css" />
+<link href="styles/menu.css" rel="stylesheet" type="text/css" />
+<script src="javascript/jquery.min.js" type="text/javascript"></script>
+<script src="javascript/menu.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="header">
+		<div id="logo">
+			<h1>
+				<a href="#"><b>T I M E X</b>
+				</a>
+			</h1>
+			<h2>
+				<a href="">Online Timesheet System</a>
+			</h2>
+		</div>
+		<div>
+			<ul id="jsddm">
+				<li><a href="index.html" accesskey="H" title="Home"><b>H</b>ome</a>
+				</li>
+				<li><a href="signin.html" accesskey="L" title="Login"><b>L</b>ogin</a>
+				</li>
+				<li><a href="registration.php" accesskey="R" title="Register"><b>R</b>egister</a>
+				</li>
+				<li><a href="timesheetlist.html"><b>T</b>imesheets</a>
+					<ul>
+						<li><a href="enterhours.html" accesskey="N" title="Login"><b>N</b>ew
+								Timesheet</a>
+						</li>
+						<li><a href="timesheetlist.html" accesskey="U"
+							title="Timesheetlist"><b>U</b>npaid Timesheets</a>
+						</li>
+						<li><a href="printpaycheck.html" accesskey="P"
+							title="Timesheetlist"><b>P</b>aid Timesheets</a>
+						</li>
+						<li><a href="approvetimesheets.html" accesskey="A"
+							title="Timesheetlist"><b>A</b>pprove Timesheets</a>
+						</li>
+					</ul></li>
+				<li><a href="staffhours.html"><b>R</b>eports</a>
+					<ul>
+						<li><a href="staffhours.html" accesskey="S"
+							title="Timesheetlist"><b>S</b>taff Report</a>
+						</li>
+						<li><a href="overallsummary.html" accesskey="U"
+							title="Timesheetlist">S<b>U</b>mmary Report</a>
+						</li>
+						<li><a href="printhours.html" accesskey="O"
+							title="Timesheetlist"><b>O</b>ne Timesheet Report</a>
+						</li>
+					</ul></li>
+				<li><a href="#"><b>H</b>elp</a>
+					<ul>
+						<li><a href="#" accesskey="C" title="Contact Us"><b>C</b>ontact
+								Us</a>
+						</li>
+					</ul></li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div id="page">
+		<div id="content">
+			<table cellspacing="0" cellpadding="0" align="center">
+				<tbody>
+					<tr>
+						<td>
+							<div align="left">
+								<a href="javascript:history.go(-1)">Previous page</a>
+							</div>
+							<table cellspacing="0" cellpadding="4" bordercolor="#CCCCCC"
+								border="0" align="center">
+								<tbody>
+									<tr valign="middle">
+										<td width="90%" valign="middle" height="60">
+											<h1 class="title">Print Timesheet</h1> <br>
+										</td>
+
+										<td nowrap="nowrap" align="right"><a href="index.html">Sign
+												out</a></td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<div align="center">
+												Employee: <span class="style25">Mike Dover </span>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Period
+												Ending: <span class="style25">2012-04-08 </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status:
+												<span class="style25">A </span> <br>
+											</div>
+											<table cellspacing="25" cellpadding="8" border="0"
+												align="center">
+												<tbody>
+													<tr>
+														<th scope="row"><span class="style31">Department</span>
+														</th>
+														<th><span class="style31">Mo</span>
+														</th>
+														<th><span class="style31">Tu</span>
+														</th>
+														<th><span class="style31">We</span>
+														</th>
+														<th><span class="style31">Th</span>
+														</th>
+														<th><span class="style31">Fr</span>
+														</th>
+														<th><span class="style31">Sa</span>
+														</th>
+														<th><span class="style31">Su</span>
+														</th>
+														<th><span class="style31">Total</span>
+														</th>
+													</tr>
+													<tr>
+														<td scope="row">
+															<div align="center" class="style25">Information
+																Technology</div>
+														</td>
+														<td><div align="center" class="style25">4.00</div>
+														</td>
+														<td><div align="center" class="style25">4.00</div>
+														</td>
+														<td><div align="center" class="style25">9.00</div>
+														</td>
+														<td><div align="center" class="style25">9.00</div>
+														</td>
+														<td><div align="center" class="style25">0.00</div>
+														</td>
+														<td><div align="center" class="style25">0.00</div>
+														</td>
+														<td><div align="center" class="style25">0.00</div>
+														</td>
+														<td><div align="center" class="style25">26.00</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<p align="center">
+												&nbsp;&nbsp; <input type="button" onclick="window.print()"
+													value="Print Timesheet" id="submit" name="submit">
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2">&nbsp;</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- end #content -->
+		<div id="sidebar">
+			<div id="news" class="boxed1">
+				<h2 class="title">News &amp; Updates</h2>
+				<div class="content">
+					<ul>
+						<li>
+							<h3>
+								February 14, 2012: <a href="#">TIMEX Training</a>
+							</h3>
+							<p>
+								We are having a 2 hr training session on TIMEX. Please <a
+									href="#">register here&hellip;</a>
+							</p></li>
+						<li>
+							<h3>
+								March 31, 2012: <a href="#">End of Quarter Reports</a>
+							</h3>
+							<p>
+								Make sure you submit your timesheets before this date for end of
+								the quarter reports. <a href="#">Read more&hellip;</a>
+							</p></li>
+						<li>
+							<h3>
+								June 30, 2012: <a href="#">End of Quarter Reports</a>
+							</h3>
+							<p>
+								Make sure you submit your timesheets before this date for end of
+								the quarter reports. <a href="#">Read more&hellip;</a>
+							</p></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both; height: 1px;"></div>
+	</div>
+	<!-- end #page -->
+	<div id="footer">
+		<p>
+			Copyright &copy; 2012 TIMEX - Online Timesheet System for <a
+				href="http://localhost:8080">ACME Company Inc.</a>
+		</p>
+	</div>
+</body>
+</html>
