@@ -46,10 +46,10 @@ include ('includes/menus.html');
 // Check if the form has been submitted:
 if (isset($_POST['register'])) {
 
-	require_once ('mysqli_connect.php'); // Connect to the db.
+			require_once ('mysqli_connect.php'); // Connect to the db and creates $dbc
 
 	$errors = array(); // Initialize an error array.
-	// Check for a first name:
+			// Check for a user name:
 	if (empty($_POST['username'])) {
 		$errors[] = 'You forgot to enter your user-name. Without it you cannot login later on.';
 	} else {
@@ -144,7 +144,8 @@ if (isset($_POST['register'])) {
 							<table width="100%" border="0" align="center" cellpadding="60"
 								cellspacing="5">
 								<tr valign="middle">
-									<td width="90%" height="60"><h1>Registration</h1> <br />
+									<td width="90%" height="60" valign="middle">
+										<h1 class="title"><?php echo $page_title;?></h1> <br />
 									</td>
 									<td align="right" nowrap="nowrap"></td>
 								</tr>
