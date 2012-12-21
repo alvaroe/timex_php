@@ -1,0 +1,52 @@
+/* menu styles for javascript */
+#jsddm
+{	margin: 0;
+	padding: 0;
+	float: left;
+	width: 690px;
+	height: 65px;
+	background: #B09733 url(../images/img02.jpg) no-repeat;
+	border-bottom: 1px solid #FFFFFF;}
+
+	#jsddm li
+	{	float: left;
+		list-style: none;
+		font: 12px Tahoma, Arial;
+		display: inline;}
+
+	#jsddm li a
+	{	display: block;
+		height: 20px;
+		/*background: #29A4E1;*/
+		padding: 14px 15px 0 15px;
+		text-decoration: none;
+		font-weight: bold;
+		border-top: 5px solid #29A4E1;
+		/*border-right: 1px solid white;*/
+		width: 70px;
+		color: #373923;
+		white-space: nowrap}
+	#jsddm li a b
+	{text-decoration: underline;}
+
+	#jsddm li a:hover
+	{	border-top-color: #1A7196}
+		
+		#jsddm li ul
+		{	margin: 0;
+			padding: 0;
+			position: absolute;
+			visibility: hidden;
+			border-top: 1px solid white}
+		
+			#jsddm li ul li
+			{	float: none;
+				display: inline}
+			
+			#jsddm li ul li a
+			{	width: auto;
+				background: #29A4E1;
+				color: #24313C}
+			
+			#jsddm li ul li a:hover
+			{	background: #1A7196}
