@@ -57,7 +57,7 @@ CREATE TABLE `employee` (
   `name` varchar(100) NOT NULL,
   `email` varchar(45) NOT NULL,
   `employeeType` char(1) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(40) NOT NULL,
   `managerId` int(10) NOT NULL,
   `employeeId` varchar(11) NOT NULL,
   `address` varchar(45) DEFAULT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `employee` (
   `taxrate` double unsigned NOT NULL,
   `registrationDate` datetime NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
@@ -81,7 +81,9 @@ INSERT INTO `employee` (`id`,`name`,`email`,`employeeType`,`password`,`managerId
  (3,'Teresa Walker','cw769@nova.edu','M','5fe1e334b794b40051928db4cd6ab9a42c107680',4,'123-89-4321','567 Main St','Davie','FL','33314',120000,16,'2007-01-02 16:00:00'),
  (4,'Tom Brady','ealvaro@nova.edu','E','5a74d1cac6ff15db88317cd2463afaf0771c7e53',4,'123-09-3456','989 Main St','Davie','FL','33314',275000,21,'2007-04-01 08:00:00'),
  (5,'Alvaro E. Escobar','alvaroescobar@live.com','A','7c4a8d09ca3762af61e59520943dc26494f8941b',4,'123-12-7654','999 Main St','Davie','FL','33314',90000,23,'2010-10-27 08:00:00'),
- (9,'John Smith','jsmith@acme.com','H','40bd001563085fc35165329ea1ff5c5ecbdbbeef',3,'209-56-4854','','','FL','',0,0,'2012-10-27 12:31:42');
+ (9,'John Smith','jsmith@acme.com','H','40bd001563085fc35165329ea1ff5c5ecbdbbeef',3,'209-56-4854','','','FL','',0,0,'2012-10-27 12:31:42'),
+ (10,'Joe Smith','jsmith@acme.com','H','7110eda4d09e062aa5e4a390b0a572ac0d2c0220',3,'209-56-4854','','','FL','',0,0,'2012-10-29 19:36:04'),
+ (11,'Jane Smith','jsmith@acme.com','M','7953636f90dda04d7ff91c93760889f726a951f7',4,'209-45-8356','','','GA','',0,0,'2012-10-29 20:15:28');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 
 

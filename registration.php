@@ -100,7 +100,7 @@ if (isset($_POST['register'])) {
 
 			// Print a message:
 			echo '<h1>Thank you!</h1>
-		<p>You are now registered as an Employee. You can start creating your timesheets now!</p><p>Click <a href=\'signin.html\'>here</a> to Login.<br /></p></div>';	
+		<p>You are now registered as an Employee. You can start creating your timesheets now!</p><p>Click <a href=\'signin.php\'>here</a> to Login.<br /></p></div>';	
 
 		} else { // If it did not run OK.
 
