@@ -14,7 +14,7 @@ include ('includes/menus.html');
 	<div id="page">
 		<div id="content">
 			<div id="welcome" class="boxed2">
-				<h1 class="title"><?php echo $page_title;?></h1> <br />
+				<h1 class="title"><?php echo $page_title;?></h1>
 				<div class="content">
 					<p>
 						<strong>TIMEX</strong> is a an online timesheet system that keeps

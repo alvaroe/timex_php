@@ -184,7 +184,7 @@ include ('includes/menus.html');
 								</tr>
 								<tr>
 									<td colspan="2" align="center">
-										<table align="center" cellpadding="60" cellspacing="10">
+										<table align="center" cellpadding="60" cellspacing="8">
 											<tr>
 												<th scope="row"><span class="style31">Department</span></th>
 												<th><span class="style31">Mo</span></th>

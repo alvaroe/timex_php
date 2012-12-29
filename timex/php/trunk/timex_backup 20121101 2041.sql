@@ -102,7 +102,7 @@ CREATE TABLE `payment` (
   PRIMARY KEY (`id`),
   KEY `FK_payment_1` (`timesheetId`),
   CONSTRAINT `FK_payment_1` FOREIGN KEY (`timesheetId`) REFERENCES `timesheet` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `payment`
@@ -114,7 +114,8 @@ INSERT INTO `payment` (`id`,`regularRate`,`overtimeRate`,`taxPercent`,`netPay`,`
  (2,35.68,53.52,18,1143.32,2),
  (3,57.69,57.69,16,1938.46,6),
  (4,132.21,132.21,21,4177.88,10),
- (5,43.27,43.27,23,1332.69,19);
+ (5,43.27,43.27,23,1332.69,19),
+ (6,35.68,53.52,18,1385.45,3);
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 
 
@@ -139,9 +140,9 @@ CREATE TABLE `timesheet` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `FK_timesheet_1` (`employeeId`),
   KEY `FK_timesheet_2` (`departmentCode`),
-  CONSTRAINT `FK_timesheet_2` FOREIGN KEY (`departmentCode`) REFERENCES `department` (`departmentCode`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_timesheet_1` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+  CONSTRAINT `FK_timesheet_1` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_timesheet_2` FOREIGN KEY (`departmentCode`) REFERENCES `department` (`departmentCode`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `timesheet`
@@ -151,20 +152,22 @@ CREATE TABLE `timesheet` (
 INSERT INTO `timesheet` (`id`,`employeeId`,`statuscode`,`periodEndingDate`,`departmentCode`,`minutesMon`,`minutesTue`,`minutesWed`,`minutesThu`,`minutesFri`,`minutesSat`,`minutesSun`) VALUES 
  (1,2,'C','2006-08-19','IT',480,480,360,480,480,0,0),
  (2,1,'C','2006-08-19','HR',480,480,480,480,480,0,0),
- (3,1,'A','2010-01-31','CS',480,480,480,600,600,0,0),
+ (3,1,'C','2010-01-31','CS',480,480,480,600,600,0,0),
  (4,1,'A','2010-02-21','AC',480,480,480,240,240,0,0),
- (5,1,'S','2010-02-28','IT',420,360,480,360,360,420,0),
+ (5,1,'A','2010-02-28','IT',420,360,480,360,360,420,0),
  (6,3,'C','2010-03-21','CS',480,480,480,480,480,0,0),
- (7,1,'S','2010-03-21','IT',480,480,480,240,420,120,0),
- (8,1,'S','2010-03-28','IT',480,480,480,480,480,0,0),
- (9,2,'S','2010-03-28','AC',480,480,48,480,480,0,0),
+ (7,1,'A','2010-03-21','IT',480,480,480,240,420,120,0),
+ (8,1,'A','2010-03-28','IT',480,480,480,480,480,0,0),
+ (9,2,'A','2010-03-28','AC',480,480,48,480,480,0,0),
  (10,4,'C','2010-05-02','CS',480,480,480,480,480,0,0),
  (11,3,'A','2010-05-02','CS',300,300,300,300,300,0,0),
- (18,1,'A','2012-02-26','IT',360,360,240,360,0,0,0),
+ (18,1,'D','2012-02-26','IT',360,360,240,360,0,0,0),
  (19,5,'C','2012-03-25','IT',480,480,480,480,480,240,0),
- (20,1,'A','2012-04-08','IT',240,240,540,540,0,0,0),
+ (20,1,'D','2012-04-08','IT',240,240,540,540,0,0,0),
  (37,3,'P','2012-04-08','HR',420,480,480,420,0,0,0),
- (38,2,'A','2012-04-08','CS',420,360,300,240,0,0,0);
+ (38,2,'A','2012-04-08','CS',420,360,300,240,0,0,0),
+ (39,1,'P','2012-12-09','AC',480,480,480,480,480,240,240),
+ (40,1,'P','2012-12-23','HR',420,480,480,480,0,0,0);
 /*!40000 ALTER TABLE `timesheet` ENABLE KEYS */;
 
 

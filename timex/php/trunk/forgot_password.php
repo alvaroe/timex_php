@@ -36,7 +36,7 @@ include ('includes/menus.html');
 				echo '<p class="error">You forgot to enter your email address!</p>';
 			} // End of empty($_POST['email']) IF.
 
-			if ($uid) { // If everything's OK and employee with emai address was found.
+			if ($uid) { // If everything's OK and employee with email address was found.
 
 				// Create a new, random password:
 				$p = substr ( md5(uniqid(rand(), true)), 3, 10);
