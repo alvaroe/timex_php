@@ -13,7 +13,7 @@ include ('includes/menus.html');
 		<div id="content">
 		<?php
 		// Check if the form has been submitted:
-		if (isset($_SESSION['employeeId'])) { //You are already login
+		if (isset($_SESSION['id'])) { //You are already login
 			$empId = $_SESSION['employeeId'];
 			echo "<p class='error'>You are already login as an employee with ID $empId";
 			echo '</p>';
@@ -94,11 +94,11 @@ include ('includes/menus.html');
 						<td>
 							<table align="center" cellpadding="4" cellspacing="0"
 								bordercolor="#CCCCCC">
-										<tr valign="middle">
-											<td width="90%" valign="middle" height="60">
-												<h1 class="title">Login</h1> <br>
-											</td>
-										</tr>
+								<tr valign="middle">
+									<td width="90%" height="60" valign="middle">
+										<h1 class="title"><?php echo $page_title;?></h1> <br />
+									</td>
+								</tr>
 								<tr>
 									<td colspan="2">
 										<center>

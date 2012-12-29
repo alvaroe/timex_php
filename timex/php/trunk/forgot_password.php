@@ -36,7 +36,7 @@ include ('includes/menus.html');
 				echo '<p class="error">You forgot to enter your email address!</p>';
 			} // End of empty($_POST['email']) IF.
 
-			if ($uid) { // If everything's OK.
+			if ($uid) { // If everything's OK and employee with emai address was found.
 
 				// Create a new, random password:
 				$p = substr ( md5(uniqid(rand(), true)), 3, 10);
@@ -71,8 +71,8 @@ include ('includes/menus.html');
 
 		?>
 
-			<h1>Reset Your Password</h1>
-			<p>Enter your email address below and your password will be reset.</p>
+			<h1 class="title"><?php echo $page_title;?></h1> <br />
+			<p>Enter same email address when you registered and your password will be reset.</p>
 			<form action="forgot_password.php" method="post">
 				<fieldset>
 					<p>
