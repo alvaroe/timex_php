@@ -54,6 +54,12 @@ if (isset($_POST['register'])) {
 		$errors[] = 'You forgot to enter your user-name. Without it you cannot login later on.';
 	} else {
 		$un = mysqli_real_escape_string($dbc, trim($_POST['username']));
+				$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
+				$q = "SELECT id FROM employee WHERE employeeId = '$un' OR email = '$e'";
+				$r = @mysqli_query ($dbc, $q); // Run the query.
+				if (mysqli_affected_rows($dbc) > 0) { // Meaning that username already exists.
+					$errors[] = 'Your user-name and/or email address already exist in our database. Usually user-name (SSN) and email address must be unique.';
+				}
 	}
 
 	// Check for a last name:
@@ -116,6 +122,8 @@ if (isset($_POST['register'])) {
 		mysqli_close($dbc); // Close the database connection.
 
 		// Include the footer and quit the script:
+				include ('includes/sidebar_registration.html');
+				echo '<div style="clear: both; height: 1px;"></div></div><!-- end #page -->';
 		include ('includes/footer.html');
 		exit();
 
@@ -163,13 +171,14 @@ if (isset($_POST['register'])) {
 											<tr>
 												<td>Employee Id :</td>
 												<td><input name='username' id='username' type="text"
-													size="11" maxlength="11" />  xxx-xx-xxxx
-												</td>
+													size="11" maxlength="11"
+													value="<?php echo (isset($_POST['username']) ? $_POST['username'] : "");?>" /> xxx-xx-xxxx</td>
 											</tr>
 											<tr>
 												<td>Employee Full Name :</td>
 												<td><input name='fullname' id='fullname' type="text"
-													size="30" maxlength="30" />
+													size="30" maxlength="30"
+													value="<?php echo (isset($_POST['fullname']) ? $_POST['fullname'] : "");?>" /> firstname lastname </td>
 												</td>
 											</tr>
 											<tr>
@@ -187,28 +196,29 @@ if (isset($_POST['register'])) {
 											<tr>
 												<td>Email :</td>
 												<td><input name='email' id='email' type="text" size="25"
-													maxlength="25" />
+													maxlength="25"
+													value="<?php echo (isset($_POST['email']) ? $_POST['email'] : "");?>" /> name@domain.com </td>
 												</td>
 											</tr>
 											<tr>
 												<td>Employee Type :</td>
 												<td><select name='employeetype' id='employeetype'
 													onChange='javascript:enabledButtons("employeetype","manager", "state")' />
-													<option value='' selected></option>
-													<option value='H'>Hourly</option>
-													<option value='M'>Manager</option>
-													<option value='E'>Executive</option>
-													<option value='A'>Administrative</option> </select>
+													<option value=''  <?php echo (!isset($_POST['employeetype']) ? "SELECTED" : "");?>></option>
+													<option value='H' <?php echo ((isset($_POST['employeetype']) && $_POST['employeetype'] == 'H') ? "SELECTED" : "");?>>Hourly</option>
+													<option value='M' <?php echo ((isset($_POST['employeetype']) && $_POST['employeetype'] == 'M') ? "SELECTED" : "");?>>Manager</option>
+													<option value='E' <?php echo ((isset($_POST['employeetype']) && $_POST['employeetype'] == 'E') ? "SELECTED" : "");?>>Executive</option>
+													<option value='A' <?php echo ((isset($_POST['employeetype']) && $_POST['employeetype'] == 'A') ? "SELECTED" : "");?>>Administrative</option> </select>
 												</td>
 											</tr>
 											<tr>
 												<td>Manager :</td>
 												<td><select name='manager' id='manager'
 													onChange='javascript:enabledButtons("employeetype","manager", "state")' />
-													<option value='' selected></option>
-													<option value='3'>Teresa Walker</option>
-													<option value='4'>Tom Brady</option>
-													<option value='5'>Alvaro Escobar</option> </select>
+													<option value=''  <?php echo (!isset($_POST['manager']) ? "SELECTED" : "");?>></option>
+													<option value='3' <?php echo ((isset($_POST['manager']) && $_POST['manager'] == '3') ? "SELECTED" : "");?>>Teresa Walker</option>
+													<option value='4' <?php echo ((isset($_POST['manager']) && $_POST['manager'] == '4') ? "SELECTED" : "");?>>Tom Brady</option>
+													<option value='5' <?php echo ((isset($_POST['manager']) && $_POST['manager'] == '5') ? "SELECTED" : "");?>>Alvaro Escobar</option> </select>
 												</td>
 											</tr>
 										</table>
@@ -221,14 +231,14 @@ if (isset($_POST['register'])) {
 											<tr>
 												<td>Address :</td>
 												<td colspan=3><input name='address' id='address' type="text"
-													size="40" maxlength="40" />
+													size="40" maxlength="40" value="<?php echo (isset($_POST['address']) ? $_POST['address'] : "");?>"/>
 												</td>
 											</tr>
 
 											<tr>
 												<td>City :</td>
 												<td colspan=3><input name='city' id='city' type="text"
-													size="20" maxlength="20" />
+													size="20" maxlength="20" value="<?php echo (isset($_POST['city']) ? $_POST['city'] : "");?>" />
 												</td>
 											</tr>
 
@@ -236,14 +246,14 @@ if (isset($_POST['register'])) {
 												<td>State :</td>
 												<td><select name='state' id='state'
 													onChange='javascript:enabledButtons("employeetype","manager", "state")' />
-													<option value='' selected></option>
-													<option value='FL'>Florida</option>
-													<option value='GA'>Georgia</option>
-													<option value='NY'>New York</option>
-													<option value='CA'>California</option> </select></td>
+													<option value=''   <?php echo (!isset($_POST['state']) ? "SELECTED" : "");?>></option>
+													<option value='FL' <?php echo ((isset($_POST['state']) && $_POST['state'] == 'FL') ? "SELECTED" : "");?>>Florida</option>
+													<option value='GA' <?php echo ((isset($_POST['state']) && $_POST['state'] == 'GA') ? "SELECTED" : "");?>>Georgia</option>
+													<option value='NY' <?php echo ((isset($_POST['state']) && $_POST['state'] == 'NY') ? "SELECTED" : "");?>>New York</option>
+													<option value='CA' <?php echo ((isset($_POST['state']) && $_POST['state'] == 'CA') ? "SELECTED" : "");?>>California</option> </select></td>
 												<td>Zipcode :</td>
 												<td><input name='zipcode' id='zipcode' type="text" size="5"
-													maxlength="5" />
+													maxlength="5"  value="<?php echo (isset($_POST['zipcode']) ? $_POST['zipcode'] : "");?>"/>
 												</td>
 											</tr>
 										</table> <br> </br>

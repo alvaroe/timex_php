@@ -76,14 +76,14 @@ CREATE TABLE `employee` (
 
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
 INSERT INTO `employee` (`id`,`name`,`email`,`employeeType`,`password`,`managerId`,`employeeId`,`address`,`city`,`state`,`zipcode`,`payrate`,`taxrate`,`registrationDate`) VALUES 
- (1,'Mike Dover','cjacob@nova.edu','H','7953636f90dda04d7ff91c93760889f726a951f7',3,'123-45-6789','123 Main St','Davie','FL','33314',35.68,20,'2006-07-23 15:00:00'),
- (2,'Ajay Kumar','sbutcher@nova.edu','H','ddc9b8c6e2fdc24d97d99f0d0c9a0decaaa599ca',3,'123-67-1234','234 Main St','Davie','FL','33314',35.68,18,'2006-07-28 19:00:00'),
- (3,'Teresa Walker','cw769@nova.edu','M','5fe1e334b794b40051928db4cd6ab9a42c107680',4,'123-89-4321','567 Main St','Davie','FL','33314',120000,16,'2007-01-02 16:00:00'),
- (4,'Tom Brady','ealvaro@nova.edu','E','5a74d1cac6ff15db88317cd2463afaf0771c7e53',4,'123-09-3456','989 Main St','Davie','FL','33314',275000,21,'2007-04-01 08:00:00'),
- (5,'Alvaro E. Escobar','alvaroescobar@live.com','A','7c4a8d09ca3762af61e59520943dc26494f8941b',4,'123-12-7654','999 Main St','Davie','FL','33314',90000,23,'2010-10-27 08:00:00'),
- (9,'John Smith','jsmith@acme.com','H','40bd001563085fc35165329ea1ff5c5ecbdbbeef',3,'209-56-4854','','','FL','',0,0,'2012-10-27 12:31:42'),
- (10,'Joe Smith','jsmith@acme.com','H','7110eda4d09e062aa5e4a390b0a572ac0d2c0220',3,'209-56-4854','','','FL','',0,0,'2012-10-29 19:36:04'),
- (11,'Jane Smith','jsmith@acme.com','M','7953636f90dda04d7ff91c93760889f726a951f7',4,'209-45-8356','','','GA','',0,0,'2012-10-29 20:15:28');
+ (1,'Mike Dover','cjacob@nova.edu','H','8cb2237d0679ca88db6464eac60da96345513964',3,'123-45-6789','123 Main St','Davie','FL','33314',35.68,20,'2006-07-23 15:00:00'),
+ (2,'Ajay Kumar','sbutcher@nova.edu','H','8cb2237d0679ca88db6464eac60da96345513964',3,'123-67-1234','234 Main St','Davie','FL','33314',35.68,18,'2006-07-28 19:00:00'),
+ (3,'Teresa Walker','cw769@nova.edu','M','8cb2237d0679ca88db6464eac60da96345513964',4,'123-89-4321','567 Main St','Davie','FL','33314',120000,16,'2007-01-02 16:00:00'),
+ (4,'Tom Brady','ealvaro@nova.edu','E','8cb2237d0679ca88db6464eac60da96345513964',4,'123-09-3456','989 Main St','Davie','FL','33314',275000,21,'2007-04-01 08:00:00'),
+ (5,'Alvaro E. Escobar','alvaroescobar@live.com','A','8cb2237d0679ca88db6464eac60da96345513964',4,'123-12-7654','999 Main St','Davie','FL','33314',90000,23,'2010-10-27 08:00:00'),
+ (9,'John Smith','jsmith@acme.com','H','8cb2237d0679ca88db6464eac60da96345513964',3,'209-56-4854','','','FL','',0,0,'2012-10-27 12:31:42'),
+ (10,'Joe Smith','jsmith@acme.com','H','8cb2237d0679ca88db6464eac60da96345513964',3,'209-56-4854','','','FL','',0,0,'2012-10-29 19:36:04'),
+ (11,'Jane Smith','jsmith@acme.com','M','8cb2237d0679ca88db6464eac60da96345513964',4,'209-45-8356','','','GA','',0,0,'2012-10-29 20:15:28');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 
 

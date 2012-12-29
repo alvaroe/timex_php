@@ -24,7 +24,7 @@ include ('includes/menus.html');
 			// Make the query:
 			$id = $_SESSION['id'];
 			$q = "SELECT t.id,t.statuscode,t.periodEndingDate,d.name as department, (t.minutesMon+t.minutesTue+t.minutesWed+t.minutesThu+t.minutesFri+t.minutesSat+t.minutesSun)/60 as total
-				FROM timesheet t, department d WHERE t.employeeId='$id' AND t.departmentCode=d.departmentCode AND t.statuscode != 'C'";
+				FROM timesheet t, department d WHERE t.employeeId='$id' AND t.departmentCode=d.departmentCode AND t.statuscode != 'C' ORDER BY t.periodEndingDate DESC";
 			$r = mysqli_query ($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
 			?>
 
@@ -34,8 +34,10 @@ include ('includes/menus.html');
 						<table align="center" cellpadding="4" cellspacing="0"
 							bordercolor="#CCCCCC">
 							<tr valign="middle">
-										<td width="90%" valign="middle" height="60">
-											<h1 class="title">Timesheets List</h1> <br>
+								<td width="90%" height="60" valign="middle">
+									<h1 class="title">
+									<?php echo $page_title;?>
+									</h1> <br />
 								</td>
 								<td align="right" nowrap="nowrap"><a href="logout.php">Sign out</a>
 								</td>
@@ -83,7 +85,10 @@ include ('includes/menus.html');
 									$numrecs = @mysqli_num_rows($r);
 									for ($i = 0; $i < $numrecs; $i++) {
 										$t = mysqli_fetch_array ($r, MYSQLI_ASSOC);
-										echo "<tr><td align='center'><a href='printhours.html?tid=2'>$t[periodEndingDate] </a></td>";
+										if (in_array($t['statuscode'],array('A','S')))
+										echo "<tr><td align='center'><a href='printhours.php?tid=$t[id]'>$t[periodEndingDate] </a></td>";
+										else
+										echo "<tr><td align='center'><a href='enterhours.php?tid=$t[id]'>$t[periodEndingDate] </a></td>";
 										echo "<td><div align='center' class='style25'>".number_format($t['total'],2)."</td>";
 										echo "<td><div align='center' class='style25'>".$t['department']."</td>";
 										echo "<td><div align='center' class='style25'>".$t['statuscode']."</td>";
