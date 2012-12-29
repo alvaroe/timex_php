@@ -42,106 +42,106 @@ include ('includes/menus.html');
 	<div id="page">
 		<div id="content">
 
-<?php 
-// Check if the form has been submitted:
-if (isset($_POST['register'])) {
+		<?php
+		// Check if the form has been submitted:
+		if (isset($_POST['register'])) {
 
 			require_once ('mysqli_connect.php'); // Connect to the db and creates $dbc
 
-	$errors = array(); // Initialize an error array.
+			$errors = array(); // Initialize an error array.
 			// Check for a user name:
-	if (empty($_POST['username'])) {
-		$errors[] = 'You forgot to enter your user-name. Without it you cannot login later on.';
-	} else {
-		$un = mysqli_real_escape_string($dbc, trim($_POST['username']));
+			if (empty($_POST['username'])) {
+				$errors[] = 'You forgot to enter your user-name. Without it you cannot login later on.';
+			} else {
+				$un = mysqli_real_escape_string($dbc, trim($_POST['username']));
 				$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
 				$q = "SELECT id FROM employee WHERE employeeId = '$un' OR email = '$e'";
 				$r = @mysqli_query ($dbc, $q); // Run the query.
 				if (mysqli_affected_rows($dbc) > 0) { // Meaning that username already exists.
 					$errors[] = 'Your user-name and/or email address already exist in our database. Usually user-name (SSN) and email address must be unique.';
 				}
-	}
+			}
 
-	// Check for a last name:
-	if (empty($_POST['fullname'])) {
-		$errors[] = 'You forgot to enter your full name.';
-	} else {
-		$fn = mysqli_real_escape_string($dbc, trim($_POST['fullname']));
-	}
+			// Check for a last name:
+			if (empty($_POST['fullname'])) {
+				$errors[] = 'You forgot to enter your full name.';
+			} else {
+				$fn = mysqli_real_escape_string($dbc, trim($_POST['fullname']));
+			}
 
-	// Check for an email address:
-	if (empty($_POST['email'])) {
-		$errors[] = 'You forgot to enter your email address. Without it you cannot receive updates via email.';
-	} else {
-		$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
-	}
+			// Check for an email address:
+			if (empty($_POST['email'])) {
+				$errors[] = 'You forgot to enter your email address. Without it you cannot receive updates via email.';
+			} else {
+				$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
+			}
 
-	// Check for a password and match against the confirmed password:
-	if (!empty($_POST['password'])) {
-		if ($_POST['password'] != $_POST['reenterpassword']) {
-			$errors[] = 'Your password did not match the re-entered password.';
-		} else {
-			$p = mysqli_real_escape_string($dbc, trim($_POST['password']));
-		}
-	} else {
-		$errors[] = 'You forgot to enter your password.';
-	}
-	$mid = mysqli_real_escape_string($dbc, trim($_POST['manager']));
-	$emt = mysqli_real_escape_string($dbc, trim($_POST['employeetype']));
-	$adr = mysqli_real_escape_string($dbc, trim($_POST['address']));
-	$cit = mysqli_real_escape_string($dbc, trim($_POST['city']));
-	$sta = mysqli_real_escape_string($dbc, trim($_POST['state']));
-	$zip = mysqli_real_escape_string($dbc, trim($_POST['zipcode']));
-			
+			// Check for a password and match against the confirmed password:
+			if (!empty($_POST['password'])) {
+				if ($_POST['password'] != $_POST['reenterpassword']) {
+					$errors[] = 'Your password did not match the re-entered password.';
+				} else {
+					$p = mysqli_real_escape_string($dbc, trim($_POST['password']));
+				}
+			} else {
+				$errors[] = 'You forgot to enter your password.';
+			}
+			$mid = mysqli_real_escape_string($dbc, trim($_POST['manager']));
+			$emt = mysqli_real_escape_string($dbc, trim($_POST['employeetype']));
+			$adr = mysqli_real_escape_string($dbc, trim($_POST['address']));
+			$cit = mysqli_real_escape_string($dbc, trim($_POST['city']));
+			$sta = mysqli_real_escape_string($dbc, trim($_POST['state']));
+			$zip = mysqli_real_escape_string($dbc, trim($_POST['zipcode']));
 
-	if (empty($errors)) { // If everything's OK.
 
-		// Register the user in the database...
+			if (empty($errors)) { // If everything's OK.
 
-		// Make the query:
-		$q = "INSERT INTO employee (employeeId, name, email, employeeType, password,       managerId, address, city,  state, zipcode, payrate, taxrate, registrationDate)
+				// Register the user in the database...
+
+				// Make the query:
+				$q = "INSERT INTO employee (employeeId, name, email, employeeType, password,       managerId, address, city,  state, zipcode, payrate, taxrate, registrationDate)
 							 VALUES ('$un',     '$fn', '$e',  '$emt',       SHA1('$p'), $mid,      '$adr',  '$cit','$sta','$zip',  0.00,    0,       NOW() )";
-		$r = @mysqli_query ($dbc, $q); // Run the query.
-		if ($r) { // If it ran OK.
+				$r = @mysqli_query ($dbc, $q); // Run the query.
+				if ($r) { // If it ran OK.
 
-			// Print a message:
-			echo '<h1>Thank you!</h1>
+					// Print a message:
+					echo '<h1>Thank you!</h1>
 		<p>You are now registered as an Employee. You can start creating your timesheets now!</p><p>Click <a href=\'signin.php\'>here</a> to Login.<br /></p></div>';	
 
-		} else { // If it did not run OK.
+				} else { // If it did not run OK.
 
-			// Public message:
-			echo '<h1>System Error</h1>
+					// Public message:
+					echo '<h1>System Error</h1>
 			<p class="error">You could not be registered due to a system error. We apologize for any inconvenience.</p></div>'; 
 
-			// Debugging message:
-			echo '<p>' . mysqli_error($dbc) . '<br /><br />Query: ' . $q . '</p>';
+					// Debugging message:
+					echo '<p>' . mysqli_error($dbc) . '<br /><br />Query: ' . $q . '</p>';
 
-		} // End of if ($r) IF.
+				} // End of if ($r) IF.
 
-		mysqli_close($dbc); // Close the database connection.
+				mysqli_close($dbc); // Close the database connection.
 
-		// Include the footer and quit the script:
+				// Include the footer and quit the script:
 				include ('includes/sidebar_registration.html');
 				echo '<div style="clear: both; height: 1px;"></div></div><!-- end #page -->';
-		include ('includes/footer.html');
-		exit();
+				include ('includes/footer.html');
+				exit();
 
-	} else { // Report the errors.
+			} else { // Report the errors.
 
-		echo '<h1>Error!</h1>
+				echo '<h1>Error!</h1>
 		<p class="error">The following error(s) occurred:<br />';
-		foreach ($errors as $msg) { // Print each error.
-			echo " - $msg<br />\n";
-		}
-		echo '</p><p>Please try again.</p><p><br /></p>';
+				foreach ($errors as $msg) { // Print each error.
+					echo " - $msg<br />\n";
+				}
+				echo '</p><p>Please try again.</p><p><br /></p>';
 
-	} // End of if (empty($errors)) IF.
+			} // End of if (empty($errors)) IF.
 
-	mysqli_close($dbc); // Close the database connection.
+			mysqli_close($dbc); // Close the database connection.
 
-} // End of the main Submit conditional.
-?>
+		} // End of the main Submit conditional.
+		?>
 
 			<form method='post' onSubmit='javascript:return validate();'
 				action='registration.php'>
@@ -268,9 +268,9 @@ if (isset($_POST['register'])) {
 			</form>
 		</div>
 		<!-- end #content -->
-	<?php
-	include ('includes/sidebar_registration.html');
-	?>
+		<?php
+		include ('includes/sidebar_registration.html');
+		?>
 		<div style="clear: both; height: 1px;"></div>
 	</div>
 	<!-- end #page -->

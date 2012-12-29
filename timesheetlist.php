@@ -24,7 +24,12 @@ include ('includes/menus.html');
 			// Make the query:
 			$id = $_SESSION['id'];
 			$q = "SELECT t.id,t.statuscode,t.periodEndingDate,d.name as department, (t.minutesMon+t.minutesTue+t.minutesWed+t.minutesThu+t.minutesFri+t.minutesSat+t.minutesSun)/60 as total
-				FROM timesheet t, department d WHERE t.employeeId='$id' AND t.departmentCode=d.departmentCode AND t.statuscode != 'C' ORDER BY t.periodEndingDate DESC";
+				FROM timesheet t, department d WHERE t.employeeId='$id' AND t.departmentCode=d.departmentCode AND t.statuscode ";
+			if (isset($_GET['paid'])){
+				$q = $q."= 'C' ORDER BY t.periodEndingDate DESC";
+			}else{
+				$q = $q."!= 'C' ORDER BY t.periodEndingDate DESC";
+			}
 			$r = mysqli_query ($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
 			?>
 
@@ -62,7 +67,7 @@ include ('includes/menus.html');
 									</div></td>
 							</tr>
 							<p></p>
-							<table border="0" align="center" cellpadding="8" cellspacing="10">
+							<table border="0" align="center" cellpadding="8" cellspacing="14">
 								<tr>
 									<th><span class="style31">Period Ending 
 									
@@ -86,9 +91,11 @@ include ('includes/menus.html');
 									for ($i = 0; $i < $numrecs; $i++) {
 										$t = mysqli_fetch_array ($r, MYSQLI_ASSOC);
 										if (in_array($t['statuscode'],array('A','S')))
-										echo "<tr><td align='center'><a href='printhours.php?tid=$t[id]'>$t[periodEndingDate] </a></td>";
+											echo "<tr><td align='center'><a href='printhours.php?tid=$t[id]'>$t[periodEndingDate] </a></td>";
+										elseif (in_array($t['statuscode'],array('C')))
+											echo "<tr><td align='center'><a href='printpaycheck.php?tid=$t[id]'>$t[periodEndingDate] </a></td>";
 										else
-										echo "<tr><td align='center'><a href='enterhours.php?tid=$t[id]'>$t[periodEndingDate] </a></td>";
+											echo "<tr><td align='center'><a href='enterhours.php?tid=$t[id]'>$t[periodEndingDate] </a></td>";
 										echo "<td><div align='center' class='style25'>".number_format($t['total'],2)."</td>";
 										echo "<td><div align='center' class='style25'>".$t['department']."</td>";
 										echo "<td><div align='center' class='style25'>".$t['statuscode']."</td>";

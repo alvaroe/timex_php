@@ -66,7 +66,7 @@ include ('includes/menus.html');
 										<span class="style25"><?php echo $t['statuscode'];?> </span> <br>
 									</div>
 									<table border="0" align="center" cellpadding="8"
-										cellspacing="25">
+										cellspacing="30">
 										<tr>
 											<th scope="row"><span class="style31">Department</span></th>
 											<th><span class="style31">Mo</span></th>
