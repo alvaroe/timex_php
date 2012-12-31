@@ -260,7 +260,7 @@ include ('includes/menus.html');
 										<p align="center">
 											<input name="register" id="register" type="submit"
 												value="Register" disabled> <br> <br>
-										</p></td>
+										</p>
 								</tr>
 							</table></td>
 					</tr>
