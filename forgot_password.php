@@ -49,10 +49,11 @@ include ('includes/menus.html');
 
 					// Send an email:
 					$body = "Your password to log into TIMEX has been temporarily changed to '$p'. Please log in using this password and this email address. Then you may change your password to something more familiar.";
-					mail ($_POST['email'], 'Your temporary password.', $body, 'From: ealvaro@nova.edu');
+					//mail ($_POST['email'], 'Your temporary password.', $body, 'From: ealvaro@nova.edu');
+					echo $body;
 
 					// Print a message and wrap up:
-					echo '<h3>Your password has been changed. You will receive the new, temporary password at the email address with which you registered. Once you have logged in with this password, you may change it by clicking on the "Change Password" link.</h3>';
+					//echo '<h3>Your password has been changed. You will receive the new, temporary password at the email address with which you registered. Once you have logged in with this password, you may change it by clicking on the "Change Password" link.</h3>';
 					mysqli_close($dbc);
 					include ('includes/footer.html');
 					exit(); // Stop the script.
@@ -71,16 +72,34 @@ include ('includes/menus.html');
 
 		?>
 
-			<h1 class="title"><?php echo $page_title;?></h1> <br />
-			<p>Enter same email address when you registered and your password will be reset.</p>
-			<form action="forgot_password.php" method="post">
-				<fieldset>
-					<p>
-						<b>Email Address:</b> <input type="text" name="email" size="20"
-							maxlength="40"
-							value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" />
-					</p>
-				</fieldset>
+			<form method="post">
+				<table width="100%" border="0" align="center" cellpadding="60" cellspacing="5">
+					<tr valign="middle">
+						<td width="90%" height="60" valign="middle">
+							<h1 class="title"><?php echo $page_title;?></h1> <br />
+						</td>
+						<td align="right" nowrap="nowrap"></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center">
+							<center>
+
+								<!-- status messages -->
+							</center>
+							<p>Enter same email address when you registered and your password will be reset.</p></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center">
+							<table align="center" cellpadding="20" cellspacing="10">
+								<tr>
+									<td>Email Address:</td>
+									<td><input type="text" name="email" size="20" maxlength="40"
+										value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" /></td>
+								</tr>
+							</table> <br> </br>
+						</td>
+					</tr>				
+				</table>
 				<div align="center">
 					<input type="submit" name="submit" value="Reset My Password" />
 				</div>
