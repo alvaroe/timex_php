@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/" />
+<title>New_Timesheet</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New_Timesheet</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/timex_php/timesheetlist.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=New Timesheet</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=h1.title</td>
+	<td>New Timesheet</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=tDepartmentCode</td>
+	<td>label=Accounting</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=hrMon</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=hrMon</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=hrTue</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=hrTue</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=hrWed</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=hrWed</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=hrThu</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=hrThu</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=hrFri</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=hrFri</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=hrSat</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=hrSat</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=hrSun</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=hrSun</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTable</td>
+	<td>//div[@id='content']/form/table/tbody/tr/td/table/tbody/tr[3]/td/table.1.8</td>
+	<td>40.00</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=saveAndEmail</td>
+	<td>submitted</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=saveAndEmail</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=h1.title</td>
+	<td>Timesheets List</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='content']/table/tbody/tr/td/table[2]/tbody/tr[2]/td[4]/div</td>
+	<td>S</td>
+</tr>
+</tbody></table>
+</body>
+</html>
