@@ -19,7 +19,7 @@
 					?>
 					<li><a href="timesheetlist.php"><b>T</b>imesheets</a>
 						<ul>
-							<li><a href="enterhours.php" accesskey="N" title="Login"><b>N</b>ew Timesheet</a></li>
+					<li><a href="enterhours.php" accesskey="N" title="New Timesheet"><b>N</b>ew Timesheet</a></li>
 							<li><a href="timesheetlist.php" accesskey="U" title="Timesheetlist"><b>U</b>npaid Timesheets</a></li>
 							<li><a href="timesheetlist.php?paid" accesskey="P" title="Timesheetlist"><b>P</b>aid Timesheets</a></li>
 					<?php 
@@ -28,11 +28,17 @@
 					?>
 						</ul>
 					</li>
-					<li><a href="staffhours.html"><b>R</b>eports</a>
+					<li><a href="printhours.php"><b>R</b>eports</a>
 						<ul>
-							<li><a href="staffhours.html" accesskey="S" title="Timesheetlist"><b>S</b>taff Report</a></li>
-							<li><a href="overallsummary.html" accesskey="U" title="Timesheetlist">S<b>U</b>mmary Report</a></li>
-							<li><a href="printhours.php" accesskey="O" title="Timesheetlist"><b>O</b>ne Timesheet Report</a></li>
+					<?php 
+						if (isset($_SESSION['id']) && ($_SESSION['employeeType'] == 'M' || $_SESSION['employeeType'] == 'E'))
+							echo '<li><a href="staffhours.html" accesskey="S" title="Staff Hours"><b>S</b>taff Report</a></li>';
+					?>
+					<?php 
+						if (isset($_SESSION['id']) && $_SESSION['employeeType'] == 'E')
+							echo '<li><a href="overallsummary.php" accesskey="" title="Timesheetlist">S<b>U</b>mmary Report</a></li>';
+					?>
+							<li><a href="printhours.php" accesskey="O" title="Timesheet Report"><b>O</b>ne Timesheet Report</a></li>
 						</ul>
 					</li>
 					<li><a href="#"><b>H</b>elp</a>
