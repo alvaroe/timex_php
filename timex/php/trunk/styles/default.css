@@ -216,6 +216,10 @@ a:hover {
 	margin-bottom: 20px;
 }
 
+.welcome {
+    font-size: 115%;
+    color: #373923;
+}
 /* Samples */
 
 #sample1, #sample2 {
