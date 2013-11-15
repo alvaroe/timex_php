@@ -1,4 +1,13 @@
 /* menu styles for javascript */
+#loginajax
+{	margin: 10px;
+	padding: 0;
+	float: left;
+	width: 240px;
+	height: 95px;
+	background: #B09733 no-repeat;
+}
+	
 #jsddm
 {	margin: 0;
 	padding: 0;

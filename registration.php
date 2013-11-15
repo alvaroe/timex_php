@@ -1,4 +1,8 @@
 <?php
+if (!isset($_SESSION)) {
+	session_start();
+}
+require_once ('includes/config.inc.php');
 $page_title = 'Registration';
 include ('includes/header.html');
 ?>

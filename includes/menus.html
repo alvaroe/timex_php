@@ -47,7 +47,27 @@
 						</ul>
 					</li>
 				</ul>
+				<?php
+				if (!isset($_SESSION['employeeId'])){
+				?>
+				<div id="loginajax">
+				<form>
+					<div align="left">
+							Employee Id: 
+							<input id='username' name='username' value='0' type="text" size="11" maxlength="11"><br/>
+							Password: &nbsp;&nbsp;&nbsp;
+							<input id='password' name='password' value='' type="password" size="11" maxlength="11"><br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" name="submitted" value="Sign In" onclick="loginUser();">
+					</div>
+				</form>
+				</div>
+				<?php
+				} else {
+				echo '<p class="welcome">Welcome ' . $_SESSION['name'] . '</p>';
+				echo '<a href="logout.php", class="welcome">Logout<br></br></a>';
+				}
+				?>
 			</div>
-			<div class="clear"> </div>			
+						<div class="clear"> </div>			
 		</div>
 <!-- end menus.html -->

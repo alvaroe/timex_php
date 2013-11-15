@@ -11,125 +11,49 @@ include ('includes/menus.html');
 ?>
 	<div id="page">
 		<div id="content">
-		<?php
-		// Check if the form has been submitted:
-		if (isset($_SESSION['id'])) { //You are already login
-			$empId = $_SESSION['employeeId'];
-			echo "<p class='error'>You are already login as an employee with ID $empId";
-			echo '</p>';
-			echo '<p>Please Logout <a href="logout.php">here</a> if you are not this employee.</p></div>';
-		}
-		else {
-			if (isset($_POST['submitted'])) {
-
-				require_once ('mysqli_connect.php'); // Connect to the db and creates $dbc
-
-				$errors = array(); // Initialize an error array.
-				// Check for a first name:
-				if (empty($_POST['username'])) {
-					$errors[] = 'You forgot to enter your user-name. Usually it would be your SSN.';
-				} else {
-					$un = mysqli_real_escape_string($dbc, trim($_POST['username']));
-				}
-				// Check for a password:
-				if (!empty($_POST['password'])) {
-					$p = mysqli_real_escape_string($dbc, trim($_POST['password']));
-				} else {
-					$errors[] = 'You forgot to enter your password.';
-				}
-
-				if (empty($errors)) { // If everything's OK.
-					// Query the database:
-
-					// Make the query:
-					$q = "SELECT id, employeeId, name, email, employeeType, managerId FROM employee
-				      WHERE (employeeId='$un' AND password=SHA1('$p'))";
-					$r = mysqli_query ($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
-
-					if (@mysqli_num_rows($r) == 1) { // A match was made.
-
-						// Register the values & redirect:
-						$_SESSION = mysqli_fetch_array ($r, MYSQLI_ASSOC);
-						mysqli_free_result($r);
-						mysqli_close($dbc);
-
-						$url = BASE_URL . 'timesheetlist.php'; // Define the URL:
-						ob_end_clean(); // Delete the buffer.
-						header("Location: $url");
-						exit(); // Quit the script.
-
-					} else { // No match was made.
-						echo '<p class="error">Either the username and password do not match those on file or you have not registered yet.</p>';
-						echo '<p>Please Register <a href="registration.php">here</a> or try Login again <a href="signin.php">here</a>.</p>';
-					}
-
-					mysqli_close($dbc); // Close the database connection.
-
-					// Include the footer and quit the script:
-					echo '</div>';
-					include ('includes/sidebar_signin.html');
-					echo '<div style="clear: both; height: 1px;"></div></div><!-- end #page -->';
-					include ('includes/footer.html');
-					exit();
-
-				} else { // Report the errors.
-
-					echo '<h1>Error!</h1>
-		<p class="error">The following error(s) occurred:<br />';
-					foreach ($errors as $msg) { // Print each error.
-						echo " - $msg<br />\n";
-					}
-					echo '</p><p>Please try again.</p><p><br /></p>';
-
-				} // End of if (empty($errors)) IF.
-
-				mysqli_close($dbc); // Close the database connection.
-
-			} // End of the main Submit conditional.
-			?>
-
-			<form method="post" action="signin.php">
-				<table align="center" cellpadding="0" cellspacing="0">
-					<tr>
-						<td>
-							<table align="center" cellpadding="4" cellspacing="0"
-								bordercolor="#CCCCCC">
-								<tr valign="middle">
-									<td width="90%" height="60" valign="middle">
-										<h1 class="title"><?php echo $page_title;?></h1> <br />
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2">
-										<center>
-
-											<!-- status messages -->
-										</center>
-										<div align="center">
-											<p>Please provide your authentication information below.</p>
-											<p>
-												Employee Id: <input name='username' value='0' type="text"
-													size="11" maxlength="11"> &nbsp;Password: <input
-													name='password' value='' type="password" size="8"
-													maxlength="10"> &nbsp; <input type="submit"
-													name="submitted" value="Sign In">
-											</p>
-										</div>
-										</form>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2">If you cannot remember your password please click <a href='forgot_password.php'>here</a></td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-				</table>
-			</form>
+			<div id="welcome" class="boxed2">
+				<h1 class="title">Welcome to TIMEX - Online Timesheet System!</h1>
+				<div class="content">
+					<p>
+						<strong>TIMEX</strong> is a an online timesheet system that keeps track of all work done by our employees on a weekly basis.  Feel free to register, login and send us feedback on this tool.</strong></em>
+					</p>
+				</div>
+			</div>
+			<div id="sample1" class="boxed3">
+				<h2 class="title">Managers</h2>
+				<div class="content">
+					<ul>
+						<li>
+							<a href="#">You must submit your timesheets by each Friday before 5pm.</a>
+						</li>
+						<li>
+							<a href="#">You must approve your employee's timesheets before Monday 12pm of following week.</a>
+						</li>
+						<li>
+							<a href="#">All approved timesheets this week will be processed for payment on following Friday.</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="sample2" class="boxed3">
+				<h2 class="title">Hourly Employees</h2>
+				<div class="content">
+					<ol>
+						<li>
+							<a href="#">You must fill out your timesheets at the end of each day.</a>
+						</li>
+						<li>
+							<a href="#">You must submit your finalized weekly timesheets by each Friday before 6pm.</a>
+						</li>
+						<li>
+							<a href="#">This week's timesheet will be paid next Friday.</a>
+						</li>
+					</ol>
+				</div>
+			</div>
 		</div>
 		<!-- end #content -->
 		<?php
-		}
 		include ('includes/sidebar_signin.html');
 		?>
 		<div style="clear: both; height: 1px;"></div>
