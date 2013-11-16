@@ -27,7 +27,7 @@ if (!empty($_GET['p'])) {
 if ($u && $p) { // If everything's OK.
 
 	// Query the database:
-	$q = "SELECT id, employeeId, name, email, employeeType, managerId FROM employee
+	$q = "SELECT id, employeeId, name, email, employeeType, managerId, filename FROM employee
 				      WHERE (employeeId='$u' AND password=SHA1('$p'))";
 	$r = mysqli_query ($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
 
@@ -40,7 +40,8 @@ if ($u && $p) { // If everything's OK.
 		mysqli_free_result($r);
 		echo '<p class="welcome">Welcome ' . $_SESSION['name'] . '</p>';
 		echo '<a href="logout.php", class="welcome">Logout<br></br></a>';
-				
+		echo '<img width="40px" height="40px" src="images/uploads/' . $_SESSION['filename'] . '"/>';
+		
 	} else { // No match was made.  Send back error message and login form.
 		echo '<p class="error">invalid employee id and/or password.</p>';
 		echo "<form><div align='left'>";

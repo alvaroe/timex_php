@@ -14,6 +14,10 @@ include ('includes/header.html');
 					document.getElementById('register').disabled = true;
 				} else {
 					document.getElementById('register').disabled = false;
+					if (document.forms[0].elements[name1].value == 'M'){
+						document.getElementById('payrate').setAttribute("value", "100000");
+						document.getElementById('taxrate').setAttribute("value", "30.00");
+					}
 				}
 			}
 
@@ -96,15 +100,20 @@ include ('includes/menus.html');
 			$cit = mysqli_real_escape_string($dbc, trim($_POST['city']));
 			$sta = mysqli_real_escape_string($dbc, trim($_POST['state']));
 			$zip = mysqli_real_escape_string($dbc, trim($_POST['zipcode']));
-
+			$pay = mysqli_real_escape_string($dbc, trim($_POST['payrate']));
+			$tax = mysqli_real_escape_string($dbc, trim($_POST['taxrate']));
+			$filename = "silloutte.JPG";
+			if (isset($_POST['file'])) {
+			require_once ('includes/uploadpic.php');
+			}
 
 			if (empty($errors)) { // If everything's OK.
 
 				// Register the user in the database...
 
 				// Make the query:
-				$q = "INSERT INTO employee (employeeId, name, email, employeeType, password,       managerId, address, city,  state, zipcode, payrate, taxrate, registrationDate)
-							 VALUES ('$un',     '$fn', '$e',  '$emt',       SHA1('$p'), $mid,      '$adr',  '$cit','$sta','$zip',  0.00,    0,       NOW() )";
+				$q = "INSERT INTO employee (employeeId, name, email, employeeType, password,       managerId, address, city,  state, zipcode, payrate, taxrate, registrationDate,filename)
+                    				VALUES ('$un',     '$fn', '$e',  '$emt',       SHA1('$p'),     $mid,      '$adr',  '$cit','$sta','$zip',  '$pay',  '$tax',    NOW(), '$filename')";
 				$r = @mysqli_query ($dbc, $q); // Run the query.
 				if ($r) { // If it ran OK.
 
@@ -147,7 +156,7 @@ include ('includes/menus.html');
 		} // End of the main Submit conditional.
 		?>
 
-			<form method='post' onSubmit='javascript:return validate();'
+			<form method="post" onSubmit="javascript:return validate();" enctype="multipart/form-data" 
 				action='registration.php'>
 				<table width="85%" border="1" align="center" cellpadding="0"
 					cellspacing="0">
@@ -208,7 +217,7 @@ include ('includes/menus.html');
 												<td>Employee Type :</td>
 												<td><select name='employeetype' id='employeetype'
 													onChange='javascript:enabledButtons("employeetype","manager", "state")' />
-													<option value=''  <?php echo (!isset($_POST['employeetype']) ? "SELECTED" : "");?>></option>
+													<option value=''></option>
 													<option value='H' <?php echo ((isset($_POST['employeetype']) && $_POST['employeetype'] == 'H') ? "SELECTED" : "");?>>Hourly</option>
 													<option value='M' <?php echo ((isset($_POST['employeetype']) && $_POST['employeetype'] == 'M') ? "SELECTED" : "");?>>Manager</option>
 													<option value='E' <?php echo ((isset($_POST['employeetype']) && $_POST['employeetype'] == 'E') ? "SELECTED" : "");?>>Executive</option>
@@ -219,7 +228,7 @@ include ('includes/menus.html');
 												<td>Manager :</td>
 												<td><select name='manager' id='manager'
 													onChange='javascript:enabledButtons("employeetype","manager", "state")' />
-													<option value=''  <?php echo (!isset($_POST['manager']) ? "SELECTED" : "");?>></option>
+													<option value=''></option>
 													<option value='3' <?php echo ((isset($_POST['manager']) && $_POST['manager'] == '3') ? "SELECTED" : "");?>>Teresa Walker</option>
 													<option value='4' <?php echo ((isset($_POST['manager']) && $_POST['manager'] == '4') ? "SELECTED" : "");?>>Tom Brady</option>
 													<option value='5' <?php echo ((isset($_POST['manager']) && $_POST['manager'] == '5') ? "SELECTED" : "");?>>Alvaro Escobar</option> </select>
@@ -232,6 +241,13 @@ include ('includes/menus.html');
 													<hr>
 												</td>
 											</tr>
+											<tr>
+												<td colspan="3">Picture :</td>
+												<td colspan="3">
+												<input type="file" name="file" maxlength="75" size="55" id="file" />
+												</td>
+											</tr>
+
 											<tr>
 												<td>Address :</td>
 												<td colspan=3><input name='address' id='address' type="text"
@@ -250,7 +266,7 @@ include ('includes/menus.html');
 												<td>State :</td>
 												<td><select name='state' id='state'
 													onChange='javascript:enabledButtons("employeetype","manager", "state")' />
-													<option value=''   <?php echo (!isset($_POST['state']) ? "SELECTED" : "");?>></option>
+													<option value=''></option>
 													<option value='FL' <?php echo ((isset($_POST['state']) && $_POST['state'] == 'FL') ? "SELECTED" : "");?>>Florida</option>
 													<option value='GA' <?php echo ((isset($_POST['state']) && $_POST['state'] == 'GA') ? "SELECTED" : "");?>>Georgia</option>
 													<option value='NY' <?php echo ((isset($_POST['state']) && $_POST['state'] == 'NY') ? "SELECTED" : "");?>>New York</option>
@@ -262,8 +278,10 @@ include ('includes/menus.html');
 											</tr>
 										</table> <br> </br>
 										<p align="center">
+														<input type="hidden" id="payrate" name="payrate" value="15.00" />
+														<input type="hidden" id="taxrate" name="taxrate" value="15.00" />
 											<input name="register" id="register" type="submit"
-												value="Register" disabled> <br> <br>
+												value="Register" > <br> <br>
 										</p>
 								</tr>
 							</table></td>
