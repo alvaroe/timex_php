@@ -103,8 +103,8 @@ include ('includes/menus.html');
 			$pay = mysqli_real_escape_string($dbc, trim($_POST['payrate']));
 			$tax = mysqli_real_escape_string($dbc, trim($_POST['taxrate']));
 			$filename = "silloutte.JPG";
-			if (isset($_POST['file'])) {
-			require_once ('includes/uploadpic.php');
+			if (isset($_FILES['picfile'])) {
+				require_once ('includes/uploadpic.php');
 			}
 
 			if (empty($errors)) { // If everything's OK.
@@ -244,7 +244,7 @@ include ('includes/menus.html');
 											<tr>
 												<td colspan="3">Picture :</td>
 												<td colspan="3">
-												<input type="file" name="file" maxlength="75" size="55" id="file" />
+												<input type="file" name="picfile" maxlength="75" size="55" id="picfile" />
 												</td>
 											</tr>
 
